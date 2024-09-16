@@ -36,7 +36,7 @@ const Header = () => {
                   Dashboard
                 </Button>
               </Link>
-              <Link href="/get-started">
+              <Link href="/sign-in">
                 <Button className="rounded-full dark:text-white">
                   Get Started
                 </Button>
