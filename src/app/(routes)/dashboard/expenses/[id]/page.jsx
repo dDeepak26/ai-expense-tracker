@@ -1,6 +1,5 @@
 "use client";
-// import { db } from "@/utils/dbConfig";
-// import { Budgets, Expenses } from "@/utils/schema"; 
+
 import { db } from "../../../../../../utils/dbConfig";
 import { Budgets, Expenses } from "../../../../../../utils/schema";
 import { useUser } from "@clerk/nextjs";
@@ -10,7 +9,7 @@ import BudgetItem from "../../budgets/_components/BudgetItem";
 import AddExpense from "../_components/AddExpense";
 import ExpenseListTable from "../_components/ExpenseListTable";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Pen, PenBox, Trash } from "lucide-react";
+import { ArrowLeft, Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,6 +30,7 @@ function ExpensesScreen({ params }) {
   const [budgetInfo, setbudgetInfo] = useState();
   const [expensesList, setExpensesList] = useState([]);
   const route = useRouter();
+
   useEffect(() => {
     user && getBudgetInfo();
   }, [user]);
@@ -83,12 +83,12 @@ function ExpensesScreen({ params }) {
         .where(eq(Budgets.id, params.id))
         .returning();
     }
-    toast("Budget Deleted !");
+    toast("Budget Deleted!");
     route.replace("/dashboard/budgets");
   };
 
   return (
-    <div className="p-10">
+    <div className="p-10 bg-white dark:bg-gray-900 text-black dark:text-white">
       <h2 className="text-2xl font-bold gap-2 flex justify-between items-center">
         <span className="flex gap-2 items-center">
           <ArrowLeft onClick={() => route.back()} className="cursor-pointer" />
@@ -106,7 +106,7 @@ function ExpensesScreen({ params }) {
                 <Trash className="w-4" /> Delete
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="bg-white dark:bg-gray-800 text-black dark:text-white">
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -133,7 +133,7 @@ function ExpensesScreen({ params }) {
           <BudgetItem budget={budgetInfo} />
         ) : (
           <div
-            className="h-[150px] w-full bg-slate-200 
+            className="h-[150px] w-full bg-slate-200 dark:bg-gray-700 
             rounded-lg animate-pulse"
           ></div>
         )}

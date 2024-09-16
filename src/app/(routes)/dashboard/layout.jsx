@@ -23,8 +23,7 @@ function DashboardLayout({ children }) {
       .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress));
     console.log(result);
     if (result.length === 0) {
-        router.replace("/dashboard/budgets"); 
-      // router.replace("/dashboard");
+      router.replace("/dashboard/budgets");
     }
   };
 

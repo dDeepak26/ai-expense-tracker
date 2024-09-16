@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { useUser, UserButton } from "@clerk/nextjs";
+import { useUser, UserButton, UserProfile } from "@clerk/nextjs";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,20 +24,21 @@ const Header = () => {
         {/* Navigation and User Button */}
         <div className="flex items-center space-x-3">
           {isSignedIn ? (
-            <UserButton />
-          ) : (
             <div className="flex items-center space-x-3">
               <Link href="/dashboard">
-                <Button
-                  variant="outline"
-                  className="rounded-full
-                  border-gray-300 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
+                <Button className="rounded-full dark:text-white hover:bg-blue-800 hover:border-black dark:hover:bg-blue-900">
                   Dashboard
                 </Button>
               </Link>
+              <UserButton
+                className="rounded-full w-8 h-8"
+                afterSignOutUrl="/"
+              />
+            </div>
+          ) : (
+            <div className="flex items-center space-x-3">
               <Link href="/sign-in">
-                <Button className="rounded-full dark:text-white">
+                <Button className="rounded-full dark:text-white hover:bg-blue-800 hover:border-black dark:hover:bg-blue-900">
                   Get Started
                 </Button>
               </Link>

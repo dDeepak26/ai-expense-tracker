@@ -15,12 +15,11 @@ import {
 import EmojiPicker from "emoji-picker-react";
 import { useUser } from "@clerk/nextjs";
 import { Input } from "@/components/ui/input";
-// import { db } from "@/utils/dbConfig";
-// import { Budgets } from "@/utils/schema";
 import { Budgets } from "../../../../../../utils/schema";
 import { db } from "../../../../../../utils/dbConfig";
 import { eq } from "drizzle-orm";
 import { toast } from "sonner";
+
 function EditBudget({ budgetInfo, refreshData }) {
   const [emojiIcon, setEmojiIcon] = useState(budgetInfo?.icon);
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
@@ -37,6 +36,7 @@ function EditBudget({ budgetInfo, refreshData }) {
       setName(budgetInfo.name);
     }
   }, [budgetInfo]);
+
   const onUpdateBudget = async () => {
     const result = await db
       .update(Budgets)
@@ -53,23 +53,25 @@ function EditBudget({ budgetInfo, refreshData }) {
       toast("Budget Updated!");
     }
   };
+
   return (
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="flex space-x-2 gap-2 rounded-full">
-            {" "}
+          <Button className="flex space-x-2 gap-2 rounded-full bg-blue-600 text-white dark:bg-blue-500 dark:text-gray-200">
             <PenBox className="w-4" /> Edit
           </Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="bg-white dark:bg-gray-800 text-black dark:text-white">
           <DialogHeader>
-            <DialogTitle>Update Budget</DialogTitle>
+            <DialogTitle className="text-black dark:text-white">
+              Update Budget
+            </DialogTitle>
             <DialogDescription>
               <div className="mt-5">
                 <Button
                   variant="outline"
-                  className="text-lg"
+                  className="text-lg text-black dark:text-white border-black dark:border-white"
                   onClick={() => setOpenEmojiPicker(!openEmojiPicker)}
                 >
                   {emojiIcon}
@@ -84,20 +86,26 @@ function EditBudget({ budgetInfo, refreshData }) {
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Name</h2>
+                  <h2 className="text-black dark:text-white font-medium my-1">
+                    Budget Name
+                  </h2>
                   <Input
                     placeholder="e.g. Home Decor"
                     defaultValue={budgetInfo?.name}
                     onChange={(e) => setName(e.target.value)}
+                    className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-700"
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Amount</h2>
+                  <h2 className="text-black dark:text-white font-medium my-1">
+                    Budget Amount
+                  </h2>
                   <Input
                     type="number"
                     defaultValue={budgetInfo?.amount}
                     placeholder="e.g. 5000$"
                     onChange={(e) => setAmount(e.target.value)}
+                    className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white border-gray-300 dark:border-gray-700"
                   />
                 </div>
               </div>
@@ -108,7 +116,7 @@ function EditBudget({ budgetInfo, refreshData }) {
               <Button
                 disabled={!(name && amount)}
                 onClick={() => onUpdateBudget()}
-                className="mt-5 w-full rounded-full"
+                className="mt-5 w-full rounded-full bg-blue-600 text-white dark:bg-blue-500 dark:text-gray-200"
               >
                 Update Budget
               </Button>

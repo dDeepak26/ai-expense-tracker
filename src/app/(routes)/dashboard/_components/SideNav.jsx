@@ -78,8 +78,9 @@ const SideNav = () => {
         ))}
       </div>
       <div className="mt-5">
-        <div className="flex items-center gap-2 p-4 text-gray-500 font-medium cursor-pointer rounded-full hover:bg-blue-100 dark:hover:bg-gray-700">
-          <UserButton /> <span className="ml-2">Profile</span>
+        <div className="flex items-center gap-2 p-4 text-gray-500 text-lg cursor-pointer rounded-full hover:text-primary hover:bg-blue-100 dark:text-gray-300 dark:hover:bg-gray-700 ">
+          <UserButton className="rounded-full" afterSignOutUrl="/" />{" "}
+          <span className="ml-2">Profile</span>
         </div>
       </div>
     </div>

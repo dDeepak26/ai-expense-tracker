@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { SignIn } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -46,11 +46,11 @@ const Page = () => {
 
           {/* Heading */}
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Sign In to Your Account
+            Create Your Account
           </h1>
 
           {/* SignIn Component from Clerk */}
-          <SignIn />
+          <SignUp />
 
           {/* Toggle Theme Button */}
           <button

@@ -11,7 +11,7 @@ import {
 
 const BarChartDashboard = ({ budgetList }) => {
   return (
-    <div className="border rounded-2xl p-5">
+    <div className="border rounded-2xl p-5 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-md">
       <h2 className="font-bold text-lg">Activity</h2>
       <ResponsiveContainer width={"80%"} height={300}>
         <BarChart

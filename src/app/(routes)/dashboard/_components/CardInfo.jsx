@@ -25,7 +25,11 @@ const CardInfo = ({ budgetList = [], incomeList = [] }) => {
     // Example for financial advice fetching (commented out for now)
     if (totalIncome > 0 || totalBudget > 0 || totalSpend > 0) {
       const fetchFinancialAdvice = async () => {
-        const advice = await getFinancialAdvice(totalBudget, totalIncome, totalSpend);
+        const advice = await getFinancialAdvice(
+          totalBudget,
+          totalIncome,
+          totalSpend
+        );
         setFinancialAdvice(advice);
       };
       fetchFinancialAdvice();
@@ -55,7 +59,7 @@ const CardInfo = ({ budgetList = [], incomeList = [] }) => {
     <div className="p-5">
       {budgetList?.length > 0 ? (
         <div>
-          <div className="p-7 border mt-4 rounded-2xl flex flex-col md:flex-row items-center justify-between bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-md">
+          <div className="p-7 border mt-4 rounded-2xl flex flex-col md:flex-row items-center justify-between bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-md">
             <div>
               <div className="flex mb-2 flex-row space-x-1 items-center">
                 <h2 className="text-md text-gray-900 dark:text-gray-100">

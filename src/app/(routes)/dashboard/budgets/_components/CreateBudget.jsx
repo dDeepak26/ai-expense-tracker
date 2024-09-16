@@ -13,9 +13,7 @@ import {
 import EmojiPicker from "emoji-picker-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import { db } from "@/utils/dbConfig";
 import { db } from "../../../../../../utils/dbConfig";
-// import { Budgets } from "@/utils/schema";
 import { Budgets } from "../../../../../../utils/schema";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
@@ -24,8 +22,8 @@ function CreateBudget({ refreshData }) {
   const [emojiIcon, setEmojiIcon] = useState("😀");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
 
-  const [name, setName] = useState();
-  const [amount, setAmount] = useState();
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
 
   const { user } = useUser();
 
@@ -48,27 +46,30 @@ function CreateBudget({ refreshData }) {
       toast("New Budget Created!");
     }
   };
+
   return (
     <div>
       <Dialog>
         <DialogTrigger asChild>
           <div
-            className="bg-slate-100 p-10 rounded-2xl
-            items-center flex flex-col border-2 border-dashed
+            className="bg-gray-100 dark:bg-gray-800 p-10 rounded-2xl
+            items-center flex flex-col border-2 border-dashed border-gray-300 dark:border-gray-600
             cursor-pointer hover:shadow-md"
           >
             <h2 className="text-3xl">+</h2>
-            <h2>Create New Budget</h2>
+            <h2 className="text-gray-900 dark:text-gray-100">
+              Create New Budget
+            </h2>
           </div>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
           <DialogHeader>
             <DialogTitle>Create New Budget</DialogTitle>
             <DialogDescription>
               <div className="mt-5">
                 <Button
                   variant="outline"
-                  className="text-lg"
+                  className="text-lg text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600"
                   onClick={() => setOpenEmojiPicker(!openEmojiPicker)}
                 >
                   {emojiIcon}
@@ -83,18 +84,24 @@ function CreateBudget({ refreshData }) {
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Name</h2>
+                  <h2 className="text-gray-900 dark:text-gray-100 font-medium my-1">
+                    Budget Name
+                  </h2>
                   <Input
                     placeholder="e.g. Home Decor"
                     onChange={(e) => setName(e.target.value)}
+                    className="text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-700"
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Amount</h2>
+                  <h2 className="text-gray-900 dark:text-gray-100 font-medium my-1">
+                    Budget Amount
+                  </h2>
                   <Input
                     type="number"
                     placeholder="e.g. 5000$"
                     onChange={(e) => setAmount(e.target.value)}
+                    className="text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-700"
                   />
                 </div>
               </div>
@@ -105,7 +112,7 @@ function CreateBudget({ refreshData }) {
               <Button
                 disabled={!(name && amount)}
                 onClick={() => onCreateBudget()}
-                className="mt-5 w-full rounded-full"
+                className="mt-5 w-full rounded-full bg-blue-600 dark:bg-blue-500 text-white dark:text-gray-100 hover:bg-blue-700 dark:hover:bg-blue-400"
               >
                 Create Budget
               </Button>
