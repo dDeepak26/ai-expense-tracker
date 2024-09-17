@@ -13,17 +13,17 @@ function DashboardLayout({ children }) {
   const { user } = useUser();
   const router = useRouter();
   useEffect(() => {
-    user & checkUserBudgets();
+    user & checkUserBudgets(user);
   }, [user]);
 
-  const checkUserBudgets = async () => {
+  const checkUserBudgets = async (user) => {
     const result = await db
       .select()
       .from(Budgets)
       .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress));
     console.log(result);
     if (result.length === 0) {
-      router.replace("/dashboard/budgets");
+      user && router.replace("/dashboard/budgets");
     }
   };
 
