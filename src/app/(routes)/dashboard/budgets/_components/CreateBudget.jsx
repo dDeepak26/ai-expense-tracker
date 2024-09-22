@@ -99,7 +99,7 @@ function CreateBudget({ refreshData }) {
                   </h2>
                   <Input
                     type="number"
-                    placeholder="e.g. 5000$"
+                    placeholder="e.g. 5000₹"
                     onChange={(e) => setAmount(e.target.value)}
                     className="text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-700"
                   />
